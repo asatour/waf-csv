@@ -1,0 +1,30 @@
+  Methods not done yet:
+
+ ==>Class CsvReader :
+ 
+1- boolean getCaptureRawRecord()
+2- String getRawRecord()
+3- boolean getTrimWhitespace(): Gets whether leading and trailing whitespace characters are being trimmed from non-textqualified column data. Default is true.
+4- boolean getSkipEmptyRecords()
+5- boolean getSafetySwitch(): Safety caution to prevent the parser from using large amounts of memory in the case where parsing settings like file encodings don't end up matching the actual format of a file. This switch can be turned off if the file format is known and tested. With the switch off, the max column lengths and max column count per record supported by the parser will greatly increase. Default is true.
+6- int getHeaderCount(): Gets the count of headers read in by a previous call to readHeaders(). 
+7- String[] getValues()
+8- CsvReader parse(String data): Creates a CsvReader object using a string of data as the source. Uses ISO-8859-1 as the Charset.
+9- boolean readRecord(): Reads another record. Returns Whether another record was successfully read or not
+10- boolean readHeaders(): Reads the first record of data as column headers. Returns Whether the header record was successfully read or not.
+11- boolean isQualified(int columnIndex)
+12- boolean skipRecord(): Skips the next record of data by parsing each column. Does not increment getCurrentRecord(). Returns Whether another record was successfully skipped or not. 
+13- boolean skipLine(): Skips the next line of data using the standard end of line characters and does not do any column delimited parsing. Returns Whether a line was successfully skipped or not. 
+
+ ==>Class CsvWriter :
+
+1- void setRecordDelimiter(char recordDelimiter): Sets the character to use as the record delimiter.
+2- void setUseTextQualifier(boolean useTextQualifier): Sets whether text qualifiers will be used while writing data or not.
+3- void setEscapeMode(int escapeMode)
+4- void setComment(char comment)
+5- void setForceQualifier(boolean forceQualifier): Use this to force all fields to be surrounded by the text qualifier even if the qualifier is not necessarily needed to escape this field. Default is false.
+6- void endRecord(): Ends the current record by sending the record delimiter.
+7- void flush(): Clears all buffers for the current writer and causes any buffered data to be written to the underlying device.
+8- String replace(String original,String pattern, String replace)
+
+   The Development of JavaScriptCsv API will be achieved on 23 Juin 2012.

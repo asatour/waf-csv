@@ -47,10 +47,10 @@ the Wakanda product exists in two versions, the first one issued on 15 MAR 2012 
 <code>
             The following table describes the available combinations:
              
-             Windows                                Mac OS     Linux
+                              Windows                Mac OS     Linux
              
-             Wakanda Server   32-bit or 64-bit               64-bit	   64-bit
-             Wakanda Studio	 32-bit	                32-bit	   n/a
+             Wakanda Server   32-bit or 64-bit       64-bit	    64-bit
+             Wakanda Studio    32-bit                32-bit	    n/a
 </code>
 </pre>
 You can download the versions from the website of Wakanda: http://www.Wakanda.org/downloads

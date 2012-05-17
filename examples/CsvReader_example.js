@@ -30,4 +30,4 @@ var
    
 stream = new TextStream("c:/WakandaV2/csv.csv","read",-2);
 csv = new CsvReader(stream,"UTF-8");
-result = csv.get("Nom"); //returns the column of IDs: "1,2,3,4"
+result = csv.get("Nom"); //returns the column of Names: "1,2,3,4"

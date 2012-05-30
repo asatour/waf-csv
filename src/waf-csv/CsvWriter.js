@@ -21,12 +21,15 @@
 
 //(textStream, delimiteur, charset)
 function CsvWriter() {
-    "use strict";
+    this.comm ="#";
+    this.textQualifier ='"';
+    this.ForceQualifier=false;
+    this.recordDelimiteur = "\n";
+    this.UseTextQualifier= false;
+    this.ESCAPE_MODE_DOUBLED = 1; 
     this.ESCAPE_MODE_BACKSLASH = 2;
-    this.ESCAPE_MODE_DOUBLED = 1;
-    this.textQualifier = '"';
-    this.delimiteur = ";";
-    this.charset = "UTF-8";
+    this.EscapeMode = this.ESCAPE_MODE_BACKSLASH;
+    this.ForceQualifier = false;
 
     if (arguments.length === 1 && typeof arguments[0] === "string") {
         this.fileName = arguments[0];
@@ -52,42 +55,65 @@ function CsvWriter() {
 }
 
 
-CsvWriter.prototype.writeRecord = function(values) {
-    "use strict";
-    var
-    temp = new Array(),
-        stream = this.textStream;
-    temp = values;
-    stream.write(temp + "\n");
-}
-CsvWriter.prototype.writeContent = function(header, content, wstream) {
-    "use strict";
-    var
-    reg = new RegExp("[ ,;]+", "g"),
-        line = this.textStream.read(""),
-        index = 0,
-        tab = line.split(reg);
-    for (var i = 0; i < tab.length; i++) {
-        if (tab[i] === header) {
-            index = i;
-        }
+svWriter.prototype.writeRecord = function(values) {    
+	 var
+	     temp = new Array();
+	 if(this.UseTextQualifier==true)
+	     	temp = this.textQualifier + values + this.textQualifier;
+	  else 
+	     	temp = values;
+	     	
+         this.textStream.write(temp+"");
+         this.EndRecord();
     }
-    var
-    reg = new RegExp("[ ]", "g"),
-        values = content.split(reg);
-    for (var h = 0; h < values.length; h++) {
-        var chaine = "";
-        for (var i = 0; i < tab.length; i++) {
-            if (i === index) {
-                chaine += values[h];
-            }
-            if (i + 1 !== tab.length) {
-                chaine += ",";
-            }
-        }
-        wstream.write("\n" + chaine);
-    }
-}
+
+CsvWriter.prototype.writeContent = function(header,content,wstream) {
+     var 
+         reg = new RegExp("[ ,;]+", "g"),
+         line = this.textStream.read(""), 
+         index=0, 
+         tab =  line.split(reg);
+     for(var i=0; i<tab.length; i++)
+     {
+       if(tab[i] === header)
+       {
+         index = i;
+       }
+     }
+     var
+         reg = new RegExp("[ ]", "g"),
+         values = content.split(reg);
+     for(var h=0; h<values.length; h++)
+     {
+       var chaine ="";
+       for(var i=0; i<tab.length; i++) 
+       {
+         if(i===index)
+         {
+             if(this.ForceQualifier){
+       			chaine += this.textQualifier;
+       			
+       			if(this.EscapeMode == 1) {
+       				chaine += this.replace(values[h], "\\", "\\\\");
+       			} else if (this.EscapeMode == 2) {
+       				chaine += this.replace(values[h], this.textQualifier, "\\"+this.textQualifier);
+       			}
+       		
+       			
+   				chaine += this.textQualifier;
+         	}
+         	else {
+         		chaine += values[h];
+         	}
+         }
+         if(i+1 !== tab.length)
+         {
+           chaine += ",";
+         }
+       }
+       	wstream.write(chaine+"\n");
+     }
+   }
 
 CsvWriter.prototype.write = function(content, preserveSpaces, header, wstream) {
     "use strict";
@@ -99,11 +125,67 @@ CsvWriter.prototype.write = function(content, preserveSpaces, header, wstream) {
         this.writeContent(header, content, wstream);
     }
 }
+CsvWriter.prototype.writeComment = function(commentaire) {
+  
+   
+    this.textStream.write(this.comm + commentaire+"\n");
+        	
+   	}
+CsvWriter.prototype.SetRecordDelimiteur = function(recordDelimiteur) {
+        
+    	this.recordDelimiteur = recordDelimiteur;
+    	
+    }
+CsvWriter.prototype.EndRecord = function() {
+    	
+     this.textStream.write(this.recordDelimiteur);
+    	
+    	}
+    	
+CsvWriter.prototype.SetUseTextQualifier = function(UseTextQualifier) {
+    		this.UseTextQualifier = UseTextQualifier;
+    	}
+    
+CsvWriter.prototype.SetTextQualifie = function (textQualifie) {
+    	
+    	this.SetUseTextQualifier(false);
+    	this.textQualifier = textQualifie;
+    	}	
+    	
+    	
+CsvWriter.prototype.setEscapeMode = function (escapeMode) {
+    
+   	       this.EscapeMode = escapeMode;
+   	}	
+   	
+CsvWriter.prototype.setForceQualifer = function (forceQualifier) {
+   		
+   		  this.ForceQualifier = forceQualifier;
+   		  
+   		}
+   		
+CsvWriter.prototype.replace = function (original, pattern, replace) {
+	var tab = original.split(pattern);
+	var s = "";
+		for(var i=0; i<tab.length; i++) {
+			s += tab[i];
+			if(i!=tab.length-1)
+				s += replace;
+		}
+		return s;
+	}
+CsvWriter.prototype.SetComment= function(comment){
+   	 	
+   	 	this.comm = comment;
+	 	
+	 	}
+CsvWriter.prototype.flush = function()
+       {
+         this.textStream.flush();
+        
+    	
+    	}
 
-CsvWriter.prototype.SetTextQualifier = function(textQualifier) {
-    "use strict";
-    this.textQualifier = textQualifier;
-}
 
 CsvWriter.prototype.SetDelimiter = function(delimiteur) {
     "use strict";
@@ -119,17 +201,11 @@ CsvWriter.prototype.ChangeDelimiter = function(newDelim, stream) {
     stream.write(line);
 }
 
-CsvWriter.prototype.Close = function() {
-    "use strict";
-    this.textStream.close();
-}
-
 CsvWriter.prototype.writRec = function(values,preserveSpaces)
     {	
     if ( values.length > 0 && !preserveSpaces) {
          for( var i=0; i<values.length; i++){
-       // values[i].trim(); 
-       
+     
          values[i] = values[i].replace(' ','');
          
           this.writeRecord(values);
@@ -140,4 +216,8 @@ CsvWriter.prototype.writRec = function(values,preserveSpaces)
       this.writeRecord(values);
     }
       }
+CsvWriter.prototype.Close = function() {
+   
+    this.textStream.close();
+}
 exports.CsvWriter = CsvWriter;

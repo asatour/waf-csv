@@ -16,15 +16,5 @@
 12- boolean skipRecord(): Skips the next record of data by parsing each column. Does not increment getCurrentRecord(). Returns Whether another record was successfully skipped or not. 
 13- boolean skipLine(): Skips the next line of data using the standard end of line characters and does not do any column delimited parsing. Returns Whether a line was successfully skipped or not. 
 
- ==>Class CsvWriter :
-
-1- void setRecordDelimiter(char recordDelimiter): Sets the character to use as the record delimiter.
-2- void setUseTextQualifier(boolean useTextQualifier): Sets whether text qualifiers will be used while writing data or not.
-3- void setEscapeMode(int escapeMode)
-4- void setComment(char comment)
-5- void setForceQualifier(boolean forceQualifier): Use this to force all fields to be surrounded by the text qualifier even if the qualifier is not necessarily needed to escape this field. Default is false.
-6- void endRecord(): Ends the current record by sending the record delimiter.
-7- void flush(): Clears all buffers for the current writer and causes any buffered data to be written to the underlying device.
-8- String replace(String original,String pattern, String replace)
 
    The Development of JavaScriptCsv API will be achieved on 23 Juin 2012.

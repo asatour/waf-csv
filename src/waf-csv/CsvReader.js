@@ -134,6 +134,40 @@ CsvReader.prototype.getHeaders = function() {
     }
     return arr;
 }
+
+
+CsvReader.prototype.getHeader = function(columnIndex) {
+    //"use strict";
+    var
+        reg = new RegExp("[ ,;\n]+", "g"),
+        line = this.stream.read(""),
+        index = 0;
+        tableau = new Array();
+    tableau = line.split(reg);
+     for (var i = 0; i < tableau.length; i++) {
+            if (i === columnIndex) {
+                index = i;
+            }
+        }
+        return tableau[index];
+}
+
+CsvReader.prototype.getHeaderCount = function(){
+	var 
+	   headers = this.getHeaders();
+	   return headers.length; 
+	}
+
+CsvReader.prototype.getCurrentRecord = function() {
+	var
+	   i = 0,
+	   temp = new Array();
+	   	while(this.stream.end()==false){
+	   		temp[i] = this.stream.read("");
+	   		i++;
+	   		} 
+	   return temp.length - 1;	   		
+}
 //retourne le texte Qualifier 	
 CsvReader.prototype.getTextQualifier = function() {
     "use strict";
@@ -189,9 +223,6 @@ CsvReader.prototype.getUseTextQualifier = function() {
        }     
 }
 
-CsvReader.prototype.getCurrentRecord = function() {
-	return this.stream.getPos();      
-}
 
 CsvReader.prototype.Close = function() {
     "use strict";

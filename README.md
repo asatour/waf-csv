@@ -100,6 +100,8 @@ To install waf-csv module on Wakanda Server follow the directions below:
 2- Open the Modules folder.<br>
 3- Copy waf-csv folder and waf-csv.js file(found in the src folder) into the Modules folder.<br>
 4- Restart Wakanda Server.<br>
+    for more explanation, you can visit the folowing link: <br>
+    http://doc.wakanda.org/SSJS-Modules/Configuring-Custom-SSJS-Modules.200-953093.en.html<br>
 <h2>Examples</h2>
 
 Reader:

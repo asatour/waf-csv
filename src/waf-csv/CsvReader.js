@@ -163,10 +163,16 @@ CsvReader.prototype.getCurrentRecord = function() {
 	   i = 0,
 	   temp = new Array();
 	   	while(this.stream.end()==false){
-	   		temp[i] = this.stream.read("");
+	   		var
+	   		   chaine = this.stream.read("");
+	   		   if(chaine!=null && chaine!="")
+	   		   {
+	   		temp[i] = chaine;
 	   		i++;
+	   		}
+	   		 
 	   		} 
-	   return temp.length - 1;	   		
+	   		return temp.length - 1;	   		
 }
 //retourne le texte Qualifier 	
 CsvReader.prototype.getTextQualifier = function() {
@@ -222,6 +228,10 @@ CsvReader.prototype.getUseTextQualifier = function() {
        	}
        }     
 }
+
+CsvReader.prototype.parse = function(data) {
+	return new CsvReader(data);
+	}
 
 
 CsvReader.prototype.Close = function() {

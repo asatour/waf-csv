@@ -9,11 +9,10 @@
 5- boolean getSafetySwitch(): Safety caution to prevent the parser from using large amounts of memory in the case where parsing settings like file encodings don't end up matching the actual format of a file. This switch can be turned off if the file format is known and tested. With the switch off, the max column lengths and max column count per record supported by the parser will greatly increase. Default is true.
 6- int getHeaderCount(): Gets the count of headers read in by a previous call to readHeaders(). 
 7- String[] getValues()
-8- CsvReader parse(String data): Creates a CsvReader object using a string of data as the source. Uses ISO-8859-1 as the Charset.
-9- boolean readRecord(): Reads another record. Returns Whether another record was successfully read or not
-10- boolean isQualified(int columnIndex)
-11- boolean skipRecord(): Skips the next record of data by parsing each column. Does not increment getCurrentRecord(). Returns Whether another record was successfully skipped or not. 
-12- boolean skipLine(): Skips the next line of data using the standard end of line characters and does not do any column delimited parsing. Returns Whether a line was successfully skipped or not. 
+8- boolean readRecord(): Reads another record. Returns Whether another record was successfully read or not
+9- boolean isQualified(int columnIndex)
+10- boolean skipRecord(): Skips the next record of data by parsing each column. Does not increment getCurrentRecord(). Returns Whether another record was successfully skipped or not. 
+11- boolean skipLine(): Skips the next line of data using the standard end of line characters and does not do any column delimited parsing. Returns Whether a line was successfully skipped or not. 
 
 
    The Development of JavaScriptCsv API will be achieved on 23 Juin 2012.

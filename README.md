@@ -159,6 +159,6 @@ DA VINCI Coders</p>
 
 <p><strong>Contributors:</strong><br>
 Amal BAHOUS: amal.bahous@gmail.com<br>
-Najoua MAH: najoua.mahi@gmail.com<br>
+Najoua MAHI: najoua.mahi@gmail.com<br>
 Abdelahad SATOUR: satour.abdelahad@gmail.com<br>
 </p> 

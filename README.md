@@ -106,8 +106,7 @@ To install waf-csv module on Wakanda Server follow the directions below:
 
 Reader:
 
-<pre>
-<code>
+```javascript
 var 
   CsvReader;
 CsvReader = require('waf-csv').CsvReader;
@@ -120,14 +119,12 @@ var
 stream = new TextStream("c:/WakandaV2/csv.csv","read",-2);
 csv = new CsvReader(stream,"UTF-8");
 result = csv.get("Nom"); //returns the column of IDs: "1,2,3,4"
-</code>
-</pre>
+```
 
  
 Writer:
 
-<pre>
-<code>
+```javascript
 var 
   CsvWriter;
 CsvWriter = require('waf-csv').CsvWriter;
@@ -142,8 +139,7 @@ csv = new CsvWriter(stream,";","UTF-8");
 tab = new Array("1","Amal","BAHOUS");
 
 csv.writeRecord(tab);
-</code>
-</pre>
+```
 
 <h2>License</h2>
 (The MIT License)

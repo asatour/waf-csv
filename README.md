@@ -6,7 +6,7 @@ each record can contain multiple pieces of data (fields) separated by a characte
 
 The character used to distinguish between each piece of data and each record is most commonly a comma, but can be any character. A Csv file is easy to use and to manipulate.
 There are many API to manipulate this file, such as SkifeCsv, OpenCsv, SuperCsv, Csv4Java, JavaCsv…, but most of them are developed by java language.
-So under the club Da Vinci Coders, we develop a JavaScriptCsv API  based totally on JavaCsv.
+We develop a JavaScriptCsv API  based totally on JavaCsv.
 
 Following the example of JavaCsv our JavaScriptCsv API contains eighty Methods.
 

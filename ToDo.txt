@@ -14,5 +14,3 @@
 10- boolean skipRecord(): Skips the next record of data by parsing each column. Does not increment getCurrentRecord(). Returns Whether another record was successfully skipped or not. 
 11- boolean skipLine(): Skips the next line of data using the standard end of line characters and does not do any column delimited parsing. Returns Whether a line was successfully skipped or not. 
 
-
-   The Development of JavaScriptCsv API will be achieved on 23 Juin 2012.

@@ -3,6 +3,10 @@
     "description": "CSV file reader and writer  API Implementation",
     "version": "0.1",
     "author": Abdelahad SATOUR (https://github.com/HitoWang)",
+    "contributors": [
+        "Amal BAHOUS (amal.bahous@gmail.com)",
+        "Najoua MAHI (najoua.mahi@gmail.com)"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/HitoWang/waf-csv.git"

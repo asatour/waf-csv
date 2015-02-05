@@ -1,2 +1,0 @@
-1) The API test plan will be completed next month.
-2) This API will have a JSLint compatible version.

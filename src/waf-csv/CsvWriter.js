@@ -55,7 +55,7 @@ function CsvWriter() {
 }
 
 
-svWriter.prototype.writeRecord = function(values) {    
+CsvWriter.prototype.writeRecord = function(values) {    
 	 var
 	     temp = new Array();
 	 if(this.UseTextQualifier==true)
